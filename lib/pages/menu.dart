@@ -6,6 +6,7 @@ import 'package:western/widgets/itemsWidget2.dart';
 import 'package:western/widgets/itemsWidget3.dart';
 import 'package:western/widgets/itemsWidget4.dart';
 import 'package:western/widgets/itemsWidget5.dart';
+// import 'package:gradients/gradients.dart';
 
 class MenuPage extends StatelessWidget {
   const MenuPage({super.key});
@@ -13,10 +14,8 @@ class MenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      // Icon : Icons.grid_4x4_rounded,
       length: 5,
       child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 94, 134, 143),
         body: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -36,10 +35,9 @@ class MenuPage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        //ទី១ (Icon)
                         InkWell(
                           onTap: () {
-                            Navigator.pushNamed(context, "/");
+                            Navigator.pushNamed(context, "/home");
                           },
                           child: Icon(
                             Icons.arrow_back_ios_new_rounded,
@@ -55,42 +53,30 @@ class MenuPage extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        //ទី ២ (Icon)
                         InkWell(
                           onTap: () {
-                            Navigator.pushNamed(context, "/cart");
+                            Navigator.pushNamed(context, "/order");
                           },
-                          child: IconButton(
-                            icon: Icon(
-                              Icons.shopping_cart_checkout_rounded,
-                              color: Colors.white,
-                              size: 35,
-                            ),
-                            onPressed: (){
-                              Navigator.pushNamed(context, "/order");
-                            }, 
+                          child: Icon(
+                            Icons.shopping_cart_checkout_rounded,
+                            color: Colors.white,
+                            size: 35,
                           ),
                         ),
                       ],
                     ),
                   ),
-
-                  //description 1
-                  SizedBox(
-                    height: 15,
-                  ),
+                  SizedBox(height: 15),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 15),
                     child: Row(
                       children: [
                         Icon(
-                          Icons.access_time, // Use the desired icon here
+                          Icons.access_time,
                           color: Colors.white,
-                          size: 20, // Adjust the size as needed
+                          size: 20,
                         ),
-                        SizedBox(
-                            width:
-                                10), // Adds some space between the icon and the text
+                        SizedBox(width: 10),
                         Text(
                           "Open from 7AM Until 5PM",
                           style: TextStyle(
@@ -102,21 +88,17 @@ class MenuPage extends StatelessWidget {
                       ],
                     ),
                   ),
-
-                  //description 2
                   SizedBox(height: 4),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 15),
                     child: Row(
                       children: [
                         Icon(
-                          Icons.directions_walk, // Use the desired icon here
+                          Icons.directions_walk,
                           color: Colors.white,
-                          size: 20, // Adjust the size as needed
+                          size: 20,
                         ),
-                        SizedBox(
-                            width:
-                                10), // Adds some space between the icon and the text
+                        SizedBox(width: 10),
                         Text(
                           "Self-PickUp at the LU Coffee",
                           style: TextStyle(
@@ -128,21 +110,17 @@ class MenuPage extends StatelessWidget {
                       ],
                     ),
                   ),
-
-                  //description 3
                   SizedBox(height: 4),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 15),
                     child: Row(
                       children: [
                         Icon(
-                          Icons.star_rate_outlined, // Use the desired icon here
+                          Icons.star_rate_outlined,
                           color: Colors.white,
-                          size: 20, // Adjust the size as needed
+                          size: 20,
                         ),
-                        SizedBox(
-                            width:
-                                10), // Adds some space between the icon and the text
+                        SizedBox(width: 10),
                         Text(
                           "9.5    100+ ratings",
                           style: TextStyle(
@@ -154,10 +132,7 @@ class MenuPage extends StatelessWidget {
                       ],
                     ),
                   ),
-
-                  SizedBox(
-                    height: 8,
-                  ),
+                  SizedBox(height: 8),
                   TabBar(
                     isScrollable: true,
                     indicator: BoxDecoration(),

@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class EditItem extends StatelessWidget {
   final Widget widget;
@@ -14,22 +15,22 @@ class EditItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      // mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Expanded(
-          flex: 2,
-          child: Text(
-            title,
-            style: const TextStyle(
+        Text(
+          title,
+          style: GoogleFonts.nunito(
+            textStyle: TextStyle(
               fontSize: 18,
-              color: Colors.grey,
+              color: Colors.white,
             ),
           ),
         ),
-        const SizedBox(width: 40),
-        Expanded(
-          flex: 5,
+        const SizedBox(height: 15),
+        Container(
+          // flex: 5,
           child: widget,
         ),
       ],

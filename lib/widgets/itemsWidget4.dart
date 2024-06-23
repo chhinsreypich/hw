@@ -1,14 +1,78 @@
-// ignore_for_file: prefer_const_constructors, override_on_non_overriding_member
 
+// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:western/widgets/customBottomSheet.dart';
 // import 'package:western/widgets/navBar.dart';
 
-class ItemsWidget4 extends StatelessWidget {
+class ItemsWidget4 extends StatefulWidget {
   @override
+  State<ItemsWidget4> createState() => _ItemsWidget3State();
+}
+
+final List<String> options = [
+  "Normal Sugar",
+  "Less Sugar",
+  "More Sugar",
+  "No Sugar",
+];
+
+class _ItemsWidget3State extends State<ItemsWidget4> {
+  @override
+  int quantityCount = 1;
+
+  // decrement quatity
+  void decrementQuantity() {
+    setState(() {
+      if (quantityCount > 0) {
+        quantityCount--;
+      }
+    });
+  }
+
+  // increment Quatity
+  void incrementQuantity() {
+    setState(() {
+      quantityCount++;
+    });
+  }
+
+  void addToCart() {
+    // if(quantityCount > 0)
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: Colors.black54.withOpacity(0.6),
+        insetPadding: EdgeInsets.only(top: 20),
+        title: Text(
+          "Sucessfully added to cart",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.white,
+          ),
+        ),
+        actions: [
+          TextButton(
+              onPressed: () {
+                // pop to show bottom page
+                Navigator.pop(context);
+                // pop to menu page
+                Navigator.pop(context);
+              },
+              child: Text(
+                "OK",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ))
+        ],
+      ),
+    );
+  }
+
+  String currentOption = options[0];
 
   // List of item names
-
   final List<String> itemNames = [
     "Item 1",
     "Item 2",
@@ -17,17 +81,20 @@ class ItemsWidget4 extends StatelessWidget {
     "Item 5",
     "Item 6",
     "Item 7",
-    "Item 8",
-    "Item 9",
-    "Item 10",
-    "Item 11",
-    "Item 12",
-    "13",
+    "88",
+    "ee",
+    "kk",
     "Iced Chocolate",
-    "Milk Tea",
+    "Bubble Tea",
     "Olong Milktea",
     "Ovaltine",
-    "18",
+
+    "Bubble Tea",
+    "Olong Milktea",
+    "Ovaltine",
+    "Item 12",
+    "Item 13",
+    "Item 14"
   ];
 
   final List<String> description = [
@@ -38,17 +105,16 @@ class ItemsWidget4 extends StatelessWidget {
     "Description 5",
     "Description 6",
     "Description 7",
-    "Description 8",
-    "Description 9",
-    "Description 10",
-    "Description 11",
+    "ds 88",
+    "ds ee",
+    " ds kk",
+    "Refreshing choloate served over ice",
+    "Tea with bubble insid, fresh",
+    "Olong tea, make your day like tea",
+    "Ovaltine, boost your energy",
     "Description 12",
-    "13",
-    "chocolate syrup or cocoa powder, milk, and ice",
-    "black tea with milk and sweeteners",
-    "A tea-based drink made with oolong tea",
-    "milk drink with cocoa and malt extract",
-    "18",
+    "Description 13",
+    "Description 14"
   ];
 
   final List<String> price = [
@@ -59,17 +125,16 @@ class ItemsWidget4 extends StatelessWidget {
     "Item 5",
     "Item 6",
     "Item 7",
-    "Item 8",
-    "Item 9",
-    "Item 10",
-    "Item 11",
-    "Item 12",
-    "13",
+    "88",
+    "ee",
+    "kk",
+    "tt",
+    "tt",
+    "rr",
+    "\$1.00",
     "\$1.50",
     "\$1.50",
-    "\$1.75",
-    "\$1",
-    "18",
+    "\$1.00"
   ];
 
   Widget build(BuildContext context) {
@@ -88,7 +153,7 @@ class ItemsWidget4 extends StatelessWidget {
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(
-                    0.3,
+                    0.1,
                   ),
                   spreadRadius: 1,
                   blurRadius: 8,
@@ -98,23 +163,16 @@ class ItemsWidget4 extends StatelessWidget {
             child: Column(
               children: [
                 //1
+
                 InkWell(
                   onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      '/order', // Navigate to OrderPage
-                      arguments: {
-                        'name': itemNames[i],
-                        'description': description[i],
-                        'price': price[i],
-                      },
-                    );
+                    Navigator.pushNamed(context, 'singleItemPage');
                   },
                   child: Container(
                     margin: EdgeInsets.all(10),
                     child: Image.asset(
                       "lib/images/${i + 1}.png",
-                      width: 130,
+                      width: 120,
                       height: 130,
                       fit: BoxFit.cover,
                     ),
@@ -155,7 +213,7 @@ class ItemsWidget4 extends StatelessWidget {
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 95, 112, 142),
+                          color:  Color.fromARGB(255, 106, 132, 173),
                           borderRadius: BorderRadius.circular(
                               18), // Circular shape with radius 18
                           boxShadow: [
@@ -174,7 +232,7 @@ class ItemsWidget4 extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.only(top: 5, bottom: 2),
                           child: Text(
-                            price[i],
+                            "${price[i]}",
                             style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w400,
@@ -183,40 +241,16 @@ class ItemsWidget4 extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(
-                          width:
-                              8), // Add some space between the container and the icon
+                      SizedBox(width: 8), 
                       IconButton(
-                        // onPressed: () {
-                        //   /// bottom sheet pop up
-                        //   showBottomSheet(
-                        //     context: context,
-                        //     builder: (context) {
-                        //       return CustomBottomSheet(
-                        //         onPressed: () {
-                        //           // Handle button press
-                        //         },
-                        //       );
-                        //     },
-                        //   );
-                        // },
                         onPressed: () {
-                          showBottomSheet(
-                            context: context,
-                            builder: (context) {
-                              return CustomBottomSheet(
-                                itemName: itemNames[i],
-                                itemPrice: price[i],
-                                onPressed: () {
-                                  // Handle button press
-                                },
-                              );
-                            },
-                          );
+                          /// bottom sheet pop up
+                          customShowBottomSheet(context, i);
                         },
                         icon: const Icon(Icons.add),
                         style: IconButton.styleFrom(
-                            backgroundColor: Color.fromARGB(255, 25, 181, 113)),
+                            backgroundColor:
+                                Color.fromARGB(255, 195, 244, 228)),
                       ),
                     ],
                   ),
@@ -226,5 +260,219 @@ class ItemsWidget4 extends StatelessWidget {
           ),
       ],
     );
+  }
+
+  PersistentBottomSheetController customShowBottomSheet(
+      BuildContext context, int i) {
+    return showBottomSheet(
+        context: context,
+        // barrierColor: Colors.black26.withOpacity(0.8),
+        builder: (BuildContext context) {
+          return Container(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            height: 550,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 25,
+                ),
+
+                /// coffee name in sheet bar
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      itemNames[i],
+                      style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(Icons.close)),
+                  ],
+                ),
+
+                SizedBox(
+                  height: 30,
+                ),
+
+                /// sugar level selection
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Sugar Level",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          "Optional (+\$0.00)",
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: const Color.fromARGB(255, 114, 112, 112),
+                          ),
+                        )
+                      ],
+                    ),
+                    ListTile(
+                      title: Text(
+                        'Normal Sugar',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w500),
+                      ),
+                      leading: Radio<String>(
+                          value: options[0],
+                          groupValue: currentOption,
+                          // activeColor: Colors.blue,
+                          onChanged: (value) {
+                            setState(() {
+                              currentOption = value.toString();
+                            });
+                          }),
+                    ),
+                    ListTile(
+                      title: Text(
+                        'Less Sweet',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w500),
+                      ),
+                      leading: Radio<String>(
+                          value: options[1],
+                          groupValue: currentOption,
+                          // activeColor: Colors.blue,
+                          onChanged: (value) {
+                            setState(() {
+                              currentOption = value.toString();
+                            });
+                          }),
+                    ),
+                    ListTile(
+                      title: Text(
+                        'More Sweet',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w500),
+                      ),
+                     
+                      leading: Radio<String>(
+                          value: options[2],
+                          groupValue: currentOption,
+                          // activeColor: Colors.blue,
+                          onChanged: (value) {
+                            setState(() {
+                              currentOption = value.toString();
+                            });
+                          }),
+                    ),
+                    ListTile(
+                      title: Text(
+                        'No Sweet',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w500),
+                      ),
+                      
+                      leading: Radio<String>(
+                          value: options[3],
+                          groupValue: currentOption,
+                          // activeColor: Colors.blue,
+                          onChanged: (value) {
+                            setState(() {
+                              currentOption = value.toString();
+                            });
+                          }),
+                    ),
+                  ],
+                ),
+
+                SizedBox(
+                  height: 20,
+                ),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    /// show price in bottom sheet
+                    Text(
+                      price[i],
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
+                    SizedBox(
+                      child: Row(
+                        children: [
+                          /// remove icon butoon
+                          IconButton(
+                            onPressed: decrementQuantity,
+                            icon: Icon(
+                              Icons.remove_circle,
+                              size: 30,
+                            ),
+                          ),
+
+                          SizedBox(
+                            width: 40,
+                            child: Center(
+                              child: Text(
+                                quantityCount.toString(),
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                          ),
+
+                          // add icon button
+                          IconButton(
+                            onPressed: incrementQuantity,
+                            icon: Icon(
+                              Icons.add_circle,
+                              size: 30,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                Center(
+                  child: ElevatedButton(
+                    onPressed: addToCart,
+                    style: ElevatedButton.styleFrom(
+                      // primary: Colors.green,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 80, vertical: 20),
+                      backgroundColor: Colors.green,
+                    ),
+                    child: Text(
+                      "Add to Cart",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
   }
 }

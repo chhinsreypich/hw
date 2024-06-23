@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:western/widgets/forwardButton.dart';
 
+
 class SettingItem extends StatelessWidget {
   final String title;
   final Color bgColor;
@@ -11,7 +12,6 @@ class SettingItem extends StatelessWidget {
   final IconData icon;
   final Function() onTap;
   final String? value;
-
   const SettingItem({
     super.key,
     required this.title,
@@ -36,15 +36,16 @@ class SettingItem extends StatelessWidget {
               color: bgColor,
             ),
             child: Icon(
-              Ionicons.earth,
+              icon,
               color: iconColor,
             ),
           ),
           const SizedBox(width: 20),
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16,
+              color: Colors.white,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -54,10 +55,10 @@ class SettingItem extends StatelessWidget {
                   value!,
                   style: const TextStyle(
                     fontSize: 16,
-                    color: Colors.grey,
+                    color: Colors.white,
                   ),
                 )
-              : const SizedBox(width: 20),
+              : const SizedBox(),
           const SizedBox(width: 20),
           ForwardButton(
             onTap: onTap,

@@ -45,18 +45,11 @@ class SettingSwitch extends StatelessWidget {
             title,
             style: TextStyle(
               fontSize: 16,
+              color: Colors.white,
               fontWeight: FontWeight.w500,
             ),
           ),
           const Spacer(),
-        
-          Text(
-            value ? "On" : "Off",
-            style: const TextStyle(
-              fontSize: 16,
-              color: Colors.grey,
-            ),
-          ),
           const SizedBox(height: 20),
           CupertinoSwitch(value: value, onChanged: onTap)
         ],
